@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
+
 
 
 const tradeType = [
@@ -11,17 +11,35 @@ const tradeType = [
 
 class ParameterComponent extends Component
 {
+    constructor(props) {
+        super(props);
+        this.state = {value: 'export'};
+    }
+
+        
     render(){
 
         return (
             <div>
-                <div className="Header">
-                    <h1>Dashboard</h1>
-                </div>
-                <div>
-                   <Select options={tradeType} />
-                </div>
-            </div>
+                <h1>Hello from ParameterComponent</h1>
+                <form>
+                    <input type="checkbox" name="All" value="All" checked/> All 
+                    <input type="checkbox" name="Uganda" value="Uganda"/> Uganda 
+                    <input type="checkbox" name="Egypt" value="Egypt"/> Egypt 
+                    <input type="checkbox" name="Tanzania" value="Tanzania" /> Tanzania  <br />
+
+                    <label>
+                    Select Trade Type:
+                    <select value={this.state.value}>
+                        <option value="export">Export</option>
+                        <option value="import">Import</option>
+                        <option value="both">Both</option>
+                    </select>
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>            
+           
         );
     
     };

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-
+import React, { Component, useContext } from 'react';
+import {ParameterContext} from './GlobalState';
 import './css/chart.css';
-export class ChartComponent extends Component
-{
-    render(){
 
+export const ChartComponent = props =>
+{
+
+    const myvalue = useContext(ParameterContext);
+   
         return (
             <div className="chart-box">
                <div className="title">
@@ -17,5 +19,5 @@ export class ChartComponent extends Component
     
     };
 
-}
+
 
