@@ -1,16 +1,727 @@
-import React,{useState, createContext} from 'react';
+import React,{useState} from 'react';
 
-export const ParameterContext = createContext();
+ const ParameterContext = React.createContext([{}, () => {}]);
 
-export const GlobalStateProvider = props =>{
+ const GlobalStateProvider = (props) =>{
 
+    const [data, setData] = useState([
+        {
+            "Country":"Uganda",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0, "November":0, "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }
+        },{
+            "Country":"Tanzania",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }    
+        },{
+            "Country":"South Africa",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }
+        },{
+            "Country":"South Sudan",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }    
+        },{
+            "Country":"Zimbabwe",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }
+        },{
+            "Country":"Egypt",
+            "Data":{
+                "Export":{
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                },
+                "Import":{			
+                    "2018":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2017":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0},
+                    "2016":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    },
+                    "2015":{
+                        "December":0,
+                        "November":0,
+                        "October":0,
+                        "September":0,
+                        "August":0,
+                        "July":0,
+                        "June":0,
+                        "May":0,
+                        "April":0,
+                        "March":0,
+                        "February":0,
+                        "January" : 0
+                    }
+                }
+            }    
+        }    
+    ]);
+    const [country, setCountry] = useState('');
     const [countries, setCountries] = useState([]);
-
     const [tradeType, setTradeType] = useState([]);
 
     return (
-        <ParameterContext.Provider>
+        <ParameterContext.Provider value={[]}>
             {props.children}
         </ParameterContext.Provider>
     );
 };
+
+export {ParameterContext, GlobalStateProvider};

@@ -4,9 +4,11 @@ import {GlobalStateProvider} from './GlobalState';
 import ParameterComponent from './ParameterComponent.js';
 import ResultsComponent from  './ResultsComponent.js';
 
- class App extends Component {
-  render() {
-    return (
+ function App()  {
+ 
+  
+
+     return (
       <GlobalStateProvider>
         <div className="App">
             <ParameterComponent />
@@ -14,7 +16,9 @@ import ResultsComponent from  './ResultsComponent.js';
         </div>
       </GlobalStateProvider>
     );
-  }
+ 
+   
+  
 }
 
 export default App;
