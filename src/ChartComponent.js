@@ -2,15 +2,17 @@ import React, { useContext } from 'react';
 import {ParameterContext} from './GlobalState';
 import './css/chart.css';
 
-export const ChartComponent = props =>
+
+export const ChartComponent = (props) =>
 {
 
-    const myvalue = useContext(ParameterContext);
+    const [state,setState] = useContext(ParameterContext);
    
         return (
             <div className="chart-box">
+                
                <div className="title">
-                    Country : ___
+                    Country : props.name
                </div>
                <div className="chart-area"></div>
                <div className="myradio">

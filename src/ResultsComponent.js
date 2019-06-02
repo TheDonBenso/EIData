@@ -1,18 +1,22 @@
-import React from 'react';
+
 import { ChartComponent } from './ChartComponent';
+import React, { useContext } from 'react';
+import {ParameterContext} from './GlobalState';
+import {useController} from "./useController";
+
 
  const ResultsComponent =()=>
 {
-
+    const {selectedCountries, tradeType} = useController();
+    const [state,setState] = useContext(ParameterContext);
     return (
         <div className="Header">
         <h1> Hello from ResultsComponent</h1>
-            <ChartComponent/>
-            <ChartComponent/>
-            <ChartComponent/>
-            <ChartComponent/>
-            <ChartComponent/>
-            
+            {selectedCountries.Map((country, tradeType)=>
+                    <ChartComponent country tradeType />
+                
+                )        
+            }
         </div>
 
     );

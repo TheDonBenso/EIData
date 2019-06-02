@@ -1,41 +1,44 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {ParameterContext} from './GlobalState';
 
  const ParameterComponent =( )=>{
 
-    const [data,setData] = useContext(ParameterContext);
-    const [countries,setCountries] = useContext(ParameterContext);
-    const [country, setCountry] = useState(ParameterComponent);
-   
-    const addUganda = (e)=>
-    {
-        setCountry( e.target.value);
-        setCountries(prevCountries => [...prevCountries, {country : country}]);
-       console.log(countries);
+    const [state,setState] = useContext(ParameterContext);
+    useEffect(
+        ()=> {
+                
+        },[state]
+
+    );
+    const AddCountry = (e)=>
+    {  
+        e.persist(); 
+        if(e.target.checked){
+            console.log(e.target.value);
+            setState(state => ({...state, selectedCountries: [...state.selectedCountries, e.target.value]}));
+           console.log(state);
+              
+        } else {
+            let remove = state.selectedCountries.indexOf(e.target.value);
+            setState({
+                selectedCountries: state.selectedCountries.filter((_, i) => i !== remove)
+            },
+                () => { console.log('Countries', state.selectedCountries);  }
+       );
+     }
     };
-    const addSouthAfrica = (e)=>
+  
+    const setTrade = (e)=>
     {
-        setCountry( e.target.value);
+        e.persist();
+        console.log(e.target.value);
+        setState(state => ({...state, tradeType:  e.target.value}));
+        console.log(state);
     };
-    const addZimbabwe = (e)=>
-    {
-        setCountry( e.target.value);
-    };
-    const addEgypt = (e)=>
-    {
-        setCountry( e.target.value);
-    };
-    const addAll = (e)=>
-    {
-        setCountry( e.target.value);
-    };
-    const addTanzania = (e)=>
-    {
-        setCountry( e.target.value);
-    };
+  
     const getCharts = (e) => {
         e.preventDefault();
-        console.log("");
+        console.log("fetch chart data");
 
     };
     
@@ -43,15 +46,15 @@ import {ParameterContext} from './GlobalState';
         <div>
             <h1>Hello from ParameterComponent</h1>
             <form onSubmit={getCharts}>
-                <input type="checkbox" name="All" value="All" checked onChange={addAll}/> All 
-                <input type="checkbox" name="Uganda" value="Uganda" onChange={addUganda} /> Uganda
-                <input type="checkbox" name="Egypt" value="Egypt" onChange={addEgypt}/> Egypt 
-                <input type="checkbox" name="Tanzania" value="Tanzania" onChange={addTanzania} /> Tanzania
-                <input type="checkbox" name="Zimbabwe" value="Zimbabwe" onChange={addZimbabwe}/> Zimbabwe 
-              
+                <input type="checkbox" name="All" value="All" checked onChange={AddCountry}/> All 
+                <input type="checkbox" name="Uganda" value="Uganda" onClick={AddCountry} /> Uganda
+                <input type="checkbox" name="Egypt" value="Egypt" onClick={AddCountry}/> Egypt 
+                <input type="checkbox" name="Tanzania" value="Tanzania" onClick={AddCountry} /> Tanzania
+                <input type="checkbox" name="Zimbabwe" value="Zimbabwe" onClick={AddCountry}/> Zimbabwe 
+              <br />
                 <label>
                 Select Trade Type:
-                    <select defaultValue="export">
+                    <select defaultValue="export"  onClick={setTrade}>
                         <option value="export">Export</option>
                         <option value="import">Import</option>
                         <option value="both">Both</option>
