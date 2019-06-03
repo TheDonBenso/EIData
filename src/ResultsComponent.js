@@ -1,8 +1,9 @@
 
-import { ChartComponent } from './ChartComponent';
+
 import React, { useContext } from 'react';
+import { ChartComponent } from './ChartComponent';
 import {ParameterContext} from './GlobalState';
-import {useController} from "./useController";
+import useController from './useController';
 
 
  const ResultsComponent =()=>

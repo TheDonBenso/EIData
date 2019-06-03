@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useState} from 'react';
 import {ParameterContext} from './GlobalState';
 
 const useController = () =>
@@ -14,7 +14,7 @@ const useController = () =>
     return {
         selectedCountries : state.selectedCountries,
         getCountry, 
-        tradeType,
+        tradeType : state.tradeType,
         country
     }
 
