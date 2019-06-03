@@ -8,7 +8,7 @@ const useController = () =>
 
     function getCountry(countryName){
         var _countrydata = state.Countries.indexOf(countryName);
-        setCountry[state.Countries.filter((_, i) => i === _countrydata)];
+       // setCountry[...country, state.Countries.filter((_, i) => i === _countrydata)];
     }
 
     return {

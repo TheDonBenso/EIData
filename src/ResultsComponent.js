@@ -13,7 +13,7 @@ import useController from './useController';
     return (
         <div className="Header">
         <h1> Hello from ResultsComponent</h1>
-            {selectedCountries.Map((country, tradeType)=>
+            {selectedCountries.map((country, tradeType)=>
                     <ChartComponent country tradeType />
                 
                 )        
