@@ -8,13 +8,15 @@ import useController from './useController';
 
  const ResultsComponent =()=>
 {
-    const {selectedCountries, tradeType} = useController();
+    const {selectedCountries,getCountry, tradeType} = useController();
     const [state,setState] = useContext(ParameterContext);
     return (
         <div className="Header">
-        <h1> Hello from ResultsComponent</h1>
-            {selectedCountries.map((country, tradeType)=>
-                    <ChartComponent country tradeType />
+
+            {selectedCountries.map((country, id)=>
+                    //var c =  getCountry(country);
+
+                    <ChartComponent key={id} id={id} name ={country} trade={tradeType} />
                 
                 )        
             }

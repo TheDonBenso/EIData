@@ -15,7 +15,7 @@ const useController = () =>
         selectedCountries : state.selectedCountries,
         getCountry, 
         tradeType : state.tradeType,
-        country
+        Countries: state.Countries
     }
 
 

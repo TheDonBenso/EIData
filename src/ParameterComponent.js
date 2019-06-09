@@ -6,7 +6,7 @@ import {ParameterContext} from './GlobalState';
     const [state,setState] = useContext(ParameterContext);
     useEffect(
         ()=> {
-                
+        return()=>{console.log("parameter context unmounting...")}       
         },[state]
 
     );
@@ -46,7 +46,6 @@ import {ParameterContext} from './GlobalState';
         <div>
             <h1>Hello from ParameterComponent</h1>
             <form onSubmit={getCharts}>
-                <input type="checkbox" name="All" value="All" checked onChange={AddCountry}/> All 
                 <input type="checkbox" name="Uganda" value="Uganda" onClick={AddCountry} /> Uganda
                 <input type="checkbox" name="Egypt" value="Egypt" onClick={AddCountry}/> Egypt 
                 <input type="checkbox" name="Tanzania" value="Tanzania" onClick={AddCountry} /> Tanzania
@@ -54,7 +53,7 @@ import {ParameterContext} from './GlobalState';
               <br />
                 <label>
                 Select Trade Type:
-                    <select defaultValue="export"  onClick={setTrade}>
+                    <select defaultValue="both"  onClick={setTrade}>
                         <option value="export">Export</option>
                         <option value="import">Import</option>
                         <option value="both">Both</option>
