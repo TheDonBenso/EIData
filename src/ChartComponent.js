@@ -14,6 +14,8 @@ export const ChartComponent = (props) =>
     const {selectedCountries, getCountry, tradeType} = useController();
     const [country,setCountry] = useState({});
     const [tradeKeys, setTradeKeys] = useState({});
+    const [importData, setImportData] = useState([]);
+    const [exportData, setExportData] = useState([]);
 
     useEffect(()=>{
             // (the first one, and every one after that)
@@ -24,22 +26,35 @@ export const ChartComponent = (props) =>
            // console.log(tradeKeys);
 
            var mykeys =Object.keys(country);
-           console.log(mykeys);
+          // console.log(mykeys);
 
            if((tradeType !== null) && (tradeType === "import"))
            {
                 var imports = country[mykeys[3]];
+               
                 console.log(imports);
+                
+                Object.values(imports).map((year)=>{
+                  var totals = Object.values(year).reduce((total, curvalue)=> total+=curvalue);
+                  //setImportData((prev)=> ({...prev,totals}));
+                  console.log(totals);
+                });
+                console.log(importData);
+                
            }
            if((tradeType !== null) && (tradeType === "export"))
            {
             var exports = country[mykeys[2]];
+            setExportData(exports);
             console.log(exports);
            }
            if((tradeType !== null) && (tradeType === "both"))
            {
             var imports = country[mykeys[3]];
             var exports = country[mykeys[2]];
+
+            console.log(imports);
+            console.log(exports);
            }
 
             // If you want to implement componentWillUnmount,
@@ -47,8 +62,18 @@ export const ChartComponent = (props) =>
             // it prior to unmounting.
             return () => console.log('unmounting...');
             }
-    , [props.name, props.id, tradeType, state.Countries, country,tradeKeys]
+    , [props.name, props.id, tradeType, state.Countries, country,tradeKeys, importData, exportData]
     );
+
+    function sumTrade(tradedata) {
+
+        let sum = 0;
+        for (let volume of Object.values(tradedata)) {
+          sum += volume;
+        }
+      
+        return sum; // 650
+      }
 
 
         return (
@@ -61,17 +86,20 @@ export const ChartComponent = (props) =>
                <BarChart
                     width={500}
                     height={300}
-                   /* data={data} */
+                    //data={importData}
                     margin={{
                     top: 5, right: 5, left: 5, bottom: 5,
                     }}
                 >
                     
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis />
+        <XAxis dataKey="Import"/>
         <YAxis />
         <Tooltip />
         <Legend />
+        <Bar dataKey="Import" fill="#8884d8" />
+        <Bar dataKey="Export" fill="#82ca9d" />
+     
 
                 </BarChart>
 
