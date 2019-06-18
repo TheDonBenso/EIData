@@ -1,15 +1,13 @@
 
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { ChartComponent } from './ChartComponent';
-import {ParameterContext} from './GlobalState';
 import useController from './useController';
 
 
  const ResultsComponent =()=>
 {
-    const {selectedCountries,getCountry, tradeType} = useController();
-    const [state,setState] = useContext(ParameterContext);
+    const {selectedCountries, tradeType} = useController();
     return (
         <div className="Header">
 

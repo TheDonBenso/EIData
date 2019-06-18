@@ -14,9 +14,8 @@ import {ParameterContext} from './GlobalState';
     {  
         e.persist(); 
         if(e.target.checked){
-            console.log(e.target.value);
             setState(state => ({...state, selectedCountries: [...state.selectedCountries, e.target.value]}));
-           console.log(state);
+       
               
         } else {
             let remove = state.selectedCountries.indexOf(e.target.value);
@@ -31,9 +30,7 @@ import {ParameterContext} from './GlobalState';
     const setTrade = (e)=>
     {
         e.persist();
-        console.log(e.target.value);
         setState(state => ({...state, tradeType:  e.target.value}));
-        console.log(state);
     };
   
     const getCharts = (e) => {

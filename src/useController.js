@@ -3,19 +3,26 @@ import {ParameterContext} from './GlobalState';
 
 const useController = () =>
 {
-    const [state, setState] = useContext(ParameterContext);
-    const[country, setCountry] = useState({});
+    const [state] = useContext(ParameterContext);
+    const [importData, setImportData] = useState([]);
+    const [exportData] = useState([]);
 
-    function getCountry(countryName){
-        var _countrydata = state.Countries.indexOf(countryName);
-       // setCountry[...country, state.Countries.filter((_, i) => i === _countrydata)];
+   function getData(_country, _data, _tradeType)
+    {      
+            Object.values(_data).map((_year, _index) => {
+                var usekey =  Object.keys(_data);            
+                var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
+                return setImportData(prevImportData => [...prevImportData, { year:  usekey[_index], type: _tradeType, total: totals}]);
+            });
     }
 
     return {
         selectedCountries : state.selectedCountries,
-        getCountry, 
         tradeType : state.tradeType,
-        Countries: state.Countries
+        Countries: state.Countries,
+        importData,
+        exportData, 
+        getData
     }
 
 

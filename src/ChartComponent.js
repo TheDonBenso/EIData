@@ -3,66 +3,44 @@ import {ParameterContext} from './GlobalState';
 import './css/chart.css';
 import useController from './useController';
 import {
-    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
  
 
 export const ChartComponent = (props) =>
 {
 
-    const [state,setState] = useContext(ParameterContext);    
-    const {selectedCountries, getCountry, tradeType} = useController();
+    const [state] = useContext(ParameterContext);    
+    const { tradeType, importData, getData} = useController();
     const [country,setCountry] = useState({});
-    const [tradeKeys, setTradeKeys] = useState({});
-    const [importData, setImportData] = useState([
-     
-    ]);
-    const [exportData, setExportData] = useState([
-      {
-        year : "",
-        total : 0
-      }
-    ]);
+   // const [tradeKeys, setTradeKeys] = useState({});
+//    const [importData, setImportData] = useState([]);
+  //  const [exportData, setExportData] = useState([]);
 
     useEffect(()=>{
             // (the first one, and every one after that)
          //   console.log('render! Country: '+ props.name +' id : '+ props.id +' type: '+ tradeType);
-            setCountry(state.Countries[props.id]);
+              
+              setCountry(state.Countries[props.id]);
+              if((tradeType !== null) && (tradeType === "import"))
+              {
 
-           var mykeys =Object.keys(country);
+                  var imports = country["Import"];
+                  getData(country, imports, "import" );
+              }
 
-           if((tradeType !== null) && (tradeType === "import"))
-           {
-                var imports = country[mykeys[3]];
-                
-                Object.values(imports).map((_year, _index, _importkeys) => {
-                  var usekey =  Object.keys(imports);
-                  var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
-                  return setImportData(prevImportData => [...prevImportData, { year:  usekey[_index], total: totals}]);
-                  
-                });
-                
-           }
-           if((tradeType !== null) && (tradeType === "export"))
-           {
-            var exports = country[mykeys[2]];
-            setExportData(exports);
-        //    console.log(exports);
-           }
-           if((tradeType !== null) && (tradeType === "both"))
-           {
-          //  var imports = country[mykeys[3]];
-            //var exports = country[mykeys[2]];
+              if((tradeType !== null) && (tradeType === "export"))
+              {
 
-         
-           }
-
+                  var exports = country["Export"];
+                  getData(country, exports, "export");
+              }
             // If you want to implement componentWillUnmount,
             // return a function from here, and React will call
             // it prior to unmounting.
-            return () => console.log('chart component unmounting...');
-      }, [props.id, importData,tradeType, state.Countries, country]//props.name,  tradeKeys,, exportData]
-    );
+           // return () => console.log('chart component unmounting...');
+      },[state.Countries, country, props.id, tradeType]//, importData, getData]
+  );
 
   
 
@@ -74,32 +52,33 @@ export const ChartComponent = (props) =>
                </div>
                <div className="chart-area">
                <BarChart
-                    width={500}
+                    width={600}
                     height={300}
                     data={importData}
-                    margin={{
-                    top: 5, right: 5, left: 5, bottom: 5,
-                    }}
-                >
+                    margin={{ top: 5, right: 5, left: 1, bottom: 5}}  >
                             
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year"/>
-                <YAxis dataKey="total"/>
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="total" fill="#8884d8" />
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year"/>
+                    <YAxis dataKey="total"/>
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="total" fill="#8884d8" />
             
 
                 </BarChart>
 
                </div>
               
-               <div className="myradio">
-                   <input type="radio" name="line" value="line" id={1}/>     line             
-                   <input type="radio" name="bar" value="bar" id={2}/> bar
-                   <input type="radio" name="area" value="area" id={3}/> area
-
-               </div>
+             <>
+             <label className="label">
+                Select Period:
+                    <select defaultValue="Annually">                      
+                        <option value="Annually">Annually</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                </label>
+               <br />
+             </>
             </div>
 
         );
