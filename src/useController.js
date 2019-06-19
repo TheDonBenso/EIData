@@ -4,16 +4,28 @@ import {ParameterContext} from './GlobalState';
 const useController = () =>
 {
     const [state] = useContext(ParameterContext);
-    const [importData, setImportData] = useState([]);
+    const [tradeData, setTradeData] = useState([]);
     const [exportData] = useState([]);
 
    function getData(_country, _data, _tradeType)
-    {      
+    {     
+        
+        if(_tradeType === "import"){
             Object.values(_data).map((_year, _index) => {
                 var usekey =  Object.keys(_data);            
                 var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
-                return setImportData(prevImportData => [...prevImportData, { year:  usekey[_index], type: _tradeType, total: totals}]);
+                return setImportData(prevTradeData => [...prevTradeData, { year:  usekey[_index], import: totals}]);
             });
+        }
+        
+        if(_tradeType === "export")
+        {
+             Object.values(_data).map((_year, _index) => {
+                var usekey =  Object.keys(_data);            
+                var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
+                return setImportData(prevTradeData => [...prevTradeData, { year:  usekey[_index], export: totals}]);
+            });
+        }
     }
 
     return {
