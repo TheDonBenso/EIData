@@ -59,8 +59,8 @@ export const ChartComponent = (props) =>
                             
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year"/>
-                    <YAxis dataKey="import"/>
-                    <YAxis dataKey="export"/>
+                    <YAxis dataKey="import" domain={[20000, 100000]}/>
+                    <YAxis dataKey="export" domain={[20000, 100000]}/>
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="import" fill="#8884d8" />
