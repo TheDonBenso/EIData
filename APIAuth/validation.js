@@ -20,6 +20,25 @@ const loginValidation = (data) => {
     return Joi.validate(data, schema);
 }
 
+const budgetSheetValidation = (data) =>{
+    const schema = {
+
+    }
+
+    Joi.validate(data, schema);
+}
+
+const budgetRowValidation = (data) => {
+
+    const schema = {
+
+    }
+
+    Joi.validate(data, schema);
+}
+
+module.exports.budgetRowValidation = budgetRowValidation;
+module.exports.budgetSheetValidation = budgetSheetValidation;
 module.exports.registerValidation = registerValidation;
 
 module.exports.loginValidation = loginValidation;
