@@ -1,8 +1,8 @@
 import React from 'react';
 import './css/App.css';
 import {GlobalStateProvider} from './GlobalState';
-import ParameterComponent from './ParameterComponent.js';
-import ResultsComponent from  './ResultsComponent.js';
+import ParameterComponent from './ParameterComponent';
+import ResultsComponent from './ResultsComponent';
 
  function App()  {
  
