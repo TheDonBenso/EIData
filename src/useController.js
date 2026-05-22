@@ -11,20 +11,24 @@ const useController = () =>
     {     
         
         if(_tradeType === "import"){
-            Object.values(_data).map((_year, _index) => {
-                var usekey =  Object.keys(_data);            
-                var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
-                return setImportData(prevTradeData => [...prevTradeData, { year:  usekey[_index], import: totals}]);
-            });
+            const usekey = Object.keys(_data);
+            setTradeData(
+                Object.values(_data).map((_year, _index) => {
+                    const totals = Object.values(_year).reduce((total, curvalue) => total + curvalue, 0);
+                    return { year: usekey[_index], import: totals };
+                })
+            );
         }
         
         if(_tradeType === "export")
         {
-             Object.values(_data).map((_year, _index) => {
-                var usekey =  Object.keys(_data);            
-                var totals = Object.values(_year).reduce((total, curvalue)=> total+=curvalue);
-                return setImportData(prevTradeData => [...prevTradeData, { year:  usekey[_index], export: totals}]);
-            });
+            const usekey = Object.keys(_data);
+            setTradeData(
+                Object.values(_data).map((_year, _index) => {
+                    const totals = Object.values(_year).reduce((total, curvalue) => total + curvalue, 0);
+                    return { year: usekey[_index], export: totals };
+                })
+            );
         }
     }
 
@@ -32,7 +36,7 @@ const useController = () =>
         selectedCountries : state.selectedCountries,
         tradeType : state.tradeType,
         Countries: state.Countries,
-        importData,
+        importData: tradeData,
         exportData, 
         getData
     }
