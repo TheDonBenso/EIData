@@ -1,20 +1,20 @@
 import React from 'react';
-import './css/App.css';
-import {GlobalStateProvider} from './GlobalState';
-import ParameterComponent from './ParameterComponent';
-import ResultsComponent from './ResultsComponent';
+import './app/App.css';
+import AppProviders from './app/providers/AppProviders';
+import ParameterComponent from './components/controls/ParameterComponent';
+import ResultsComponent from './components/results/ResultsComponent';
 
  function App()  {
  
   
 
      return (
-      <GlobalStateProvider>
+      <AppProviders>
         <div className="App">
             <ParameterComponent />
             <ResultsComponent />
         </div>
-      </GlobalStateProvider>
+      </AppProviders>
     );
  
    
