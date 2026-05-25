@@ -12,7 +12,7 @@ vi.mock('../charts/ChartComponent', () => ({
 }));
 
 describe('ResultsComponent', () => {
-  it('renders selected country charts with precomputed series', () => {
+  it('renders charts from applied filters only', () => {
     const state = {
       Countries: [
         {
@@ -25,8 +25,19 @@ describe('ResultsComponent', () => {
           },
         },
       ],
+      filterDraft: {
+        selectedCountries: [],
+        tradeType: 'export',
+        period: 'monthly',
+      },
+      appliedFilters: {
+        selectedCountries: ['Uganda'],
+        tradeType: 'import',
+        period: 'yearly',
+      },
       selectedCountries: ['Uganda'],
       tradeType: 'import',
+      period: 'yearly',
     };
 
     render(

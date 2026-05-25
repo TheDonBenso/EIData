@@ -7,6 +7,10 @@ import {
 
 export const ChartComponent = (props) =>
 {
+    const chartData = props.chartData || [];
+    const hasImportSeries = chartData.some((row) => row.import != null);
+    const hasExportSeries = chartData.some((row) => row.export != null);
+
         return (
             <div className="chart-box">
                 
@@ -17,33 +21,21 @@ export const ChartComponent = (props) =>
                <BarChart
                     width={600}
                     height={300}
-                    data={props.chartData}
+                    data={chartData}
                     margin={{ top: 5, right: 5, left: 1, bottom: 5}}  >
                             
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="year"/>
-                    <YAxis dataKey="import" domain={[20000, 100000]}/>
-                    <YAxis dataKey="export" domain={[20000, 100000]}/>
+                    <XAxis dataKey="bucket"/>
+                    <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="import" fill="#8884d8" />
-                    <Bar dataKey="export" fill="#1384d8" />
+                    {hasImportSeries ? <Bar dataKey="import" fill="#8884d8" /> : null}
+                    {hasExportSeries ? <Bar dataKey="export" fill="#1384d8" /> : null}
             
 
                 </BarChart>
 
                </div>
-              
-             <>
-             <label className="label">
-                Select Period:
-                    <select defaultValue="Annually">                      
-                        <option value="Annually">Annually</option>
-                        <option value="Monthly">Monthly</option>
-                    </select>
-                </label>
-               <br />
-             </>
             </div>
 
         );

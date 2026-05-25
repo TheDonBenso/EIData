@@ -3,10 +3,20 @@ import countriesTradeData from '../data/countriesTradeData';
 
 const ParameterContext = React.createContext([{}, () => {}]);
 
+const initialFilters = {
+  selectedCountries: [],
+  tradeType: 'both',
+  period: 'yearly',
+};
+
 const initialTradeState = {
   Countries: countriesTradeData,
-  selectedCountries: [],
-  tradeType: '',
+  filterDraft: initialFilters,
+  appliedFilters: initialFilters,
+  // Backward-compatible aliases during migration.
+  selectedCountries: initialFilters.selectedCountries,
+  tradeType: initialFilters.tradeType,
+  period: initialFilters.period,
 };
 
 const GlobalStateProvider = ({ children }) => {

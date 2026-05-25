@@ -5,8 +5,19 @@ import useTradeFilters from './useTradeFilters';
 
 const initialState = {
   Countries: [{ Country: 'Uganda' }],
+  filterDraft: {
+    selectedCountries: [],
+    tradeType: 'both',
+    period: 'yearly',
+  },
+  appliedFilters: {
+    selectedCountries: [],
+    tradeType: 'both',
+    period: 'yearly',
+  },
   selectedCountries: [],
-  tradeType: '',
+  tradeType: 'both',
+  period: 'yearly',
 };
 
 const wrapper = ({ children }) => {
@@ -19,27 +30,48 @@ const wrapper = ({ children }) => {
 };
 
 describe('useTradeFilters', () => {
-  it('updates trade type and preserves other state', () => {
+  it('updates draft filters without mutating applied filters', () => {
     const { result } = renderHook(() => useTradeFilters(), { wrapper });
 
     act(() => {
-      result.current.setTradeType('import');
-    });
-
-    expect(result.current.tradeType).toBe('import');
-    expect(result.current.Countries).toEqual([{ Country: 'Uganda' }]);
-  });
-
-  it('updates selected countries using updater function', () => {
-    const { result } = renderHook(() => useTradeFilters(), { wrapper });
-
-    act(() => {
-      result.current.setSelectedCountries((currentSelectedCountries) => [
+      result.current.setDraftTradeType('import');
+      result.current.setDraftPeriod('monthly');
+      result.current.setDraftSelectedCountries((currentSelectedCountries) => [
         ...currentSelectedCountries,
         'Uganda',
       ]);
     });
 
-    expect(result.current.selectedCountries).toEqual(['Uganda']);
+    expect(result.current.filterDraft).toEqual({
+      selectedCountries: ['Uganda'],
+      tradeType: 'import',
+      period: 'monthly',
+    });
+    expect(result.current.appliedFilters).toEqual({
+      selectedCountries: [],
+      tradeType: 'both',
+      period: 'yearly',
+    });
+    expect(result.current.Countries).toEqual([{ Country: 'Uganda' }]);
+  });
+
+  it('applies draft filters on submit action', () => {
+    const { result } = renderHook(() => useTradeFilters(), { wrapper });
+
+    act(() => {
+      result.current.setDraftSelectedCountries((currentSelectedCountries) => [
+        ...currentSelectedCountries,
+        'Uganda',
+      ]);
+      result.current.setDraftTradeType('export');
+      result.current.setDraftPeriod('monthly');
+      result.current.applyDraftFilters();
+    });
+
+    expect(result.current.appliedFilters).toEqual({
+      selectedCountries: ['Uganda'],
+      tradeType: 'export',
+      period: 'monthly',
+    });
   });
 });
