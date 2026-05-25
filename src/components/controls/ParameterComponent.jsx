@@ -3,25 +3,32 @@ import useTradeFilters from '../../hooks/useTradeFilters';
 
  const ParameterComponent =( )=>{
 
-    const { selectedCountries, setSelectedCountries, setTradeType } = useTradeFilters();
+    const {
+        Countries,
+        filterDraft,
+        setDraftSelectedCountries,
+        setDraftTradeType,
+        setDraftPeriod,
+        applyDraftFilters,
+    } = useTradeFilters();
     useEffect(
         ()=> {
         return()=>{console.log("parameter context unmounting...")}       
-        },[selectedCountries]
+        },[filterDraft.selectedCountries]
 
     );
-    const AddCountry = (e)=>
+    const addCountry = (e)=>
     {  
         if(e.target.checked){
-            setSelectedCountries((currentSelectedCountries) => [
+            setDraftSelectedCountries((currentSelectedCountries) => [
                 ...currentSelectedCountries,
                 e.target.value,
             ]);
        
               
         } else {
-            const remove = selectedCountries.indexOf(e.target.value);
-            setSelectedCountries((currentSelectedCountries) =>
+            const remove = filterDraft.selectedCountries.indexOf(e.target.value);
+            setDraftSelectedCountries((currentSelectedCountries) =>
                 currentSelectedCountries.filter((_, i) => i !== remove)
             );
      }
@@ -29,32 +36,68 @@ import useTradeFilters from '../../hooks/useTradeFilters';
   
     const setTrade = (e)=>
     {
-        setTradeType(e.target.value);
+        setDraftTradeType(e.target.value);
+    };
+
+    const setPeriod = (e) =>
+    {
+        setDraftPeriod(e.target.value);
     };
   
     const getCharts = (e) => {
         e.preventDefault();
+        applyDraftFilters();
         console.log("fetch chart data");
 
     };
     
     return (
         <div>
-            <h1>Hello from ParameterComponent</h1>
+            <h1>Select Country/Countries and Get Import/Export Charts</h1>
             <form onSubmit={getCharts}>
-                                <input type="checkbox" name="Uganda" value="Uganda" onChange={AddCountry} /> Uganda
-                                <input type="checkbox" name="Egypt" value="Egypt" onChange={AddCountry}/> Egypt 
-                                <input type="checkbox" name="Tanzania" value="Tanzania" onChange={AddCountry} /> Tanzania
-                                <input type="checkbox" name="Zimbabwe" value="Zimbabwe" onChange={AddCountry}/> Zimbabwe 
+                {Countries.map((country) => (
+                    <label key={country.Key}>
+                        <input
+                            type="checkbox"
+                            name={country.Country}
+                            value={country.Country}
+                            checked={filterDraft.selectedCountries.includes(country.Country)}
+                            onChange={addCountry}
+                        />
+                        {` ${country.Country} `}
+                    </label>
+                ))}
               <br />
                 <label>
                 Select Trade Type:
-                                        <select defaultValue="both" onChange={setTrade}>
+                                        <select value={filterDraft.tradeType} onChange={setTrade}>
                         <option value="export">Export</option>
                         <option value="import">Import</option>
                         <option value="both">Both</option>
                     </select>
                 </label>
+                <br />
+                <label>
+                    <input
+                        type="radio"
+                        name="period"
+                        value="yearly"
+                        checked={filterDraft.period === 'yearly'}
+                        onChange={setPeriod}
+                    />
+                    Yearly
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        name="period"
+                        value="monthly"
+                        checked={filterDraft.period === 'monthly'}
+                        onChange={setPeriod}
+                    />
+                    Monthly
+                </label>
+                <br />
                 <input type="submit" value="Submit" />
             </form>
         </div>            

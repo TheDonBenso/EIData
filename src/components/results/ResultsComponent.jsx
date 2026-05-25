@@ -3,25 +3,23 @@
 import React from 'react';
 import { ChartComponent } from '../charts/ChartComponent';
 import useTradeFilters from '../../hooks/useTradeFilters';
-import aggregateTradeByYear from '../../domain/trade/aggregateTradeByYear';
+import aggregateTradeData from '../../domain/trade/aggregateTradeData';
 
 
  const ResultsComponent =()=>
 {
-    const {Countries, selectedCountries, tradeType} = useTradeFilters();
+    const {Countries, appliedFilters} = useTradeFilters();
+
     return (
         <div className="Header">
 
-            {selectedCountries.map((countryName) => {
+            {appliedFilters.selectedCountries.map((countryName) => {
                     const country = Countries.find(({ Country }) => Country === countryName);
-                    const tradeSource = country
-                        ? tradeType === 'import'
-                            ? country.Import
-                            : tradeType === 'export'
-                                ? country.Export
-                                : null
-                        : null;
-                    const chartData = aggregateTradeByYear(tradeSource, tradeType);
+                    const chartData = aggregateTradeData(
+                        country,
+                        appliedFilters.tradeType,
+                        appliedFilters.period
+                    );
 
                     return <ChartComponent key={countryName} chartData={chartData} name={countryName} />;
                 })}
